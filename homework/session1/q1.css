@@ -1,0 +1,94 @@
+.form-container {
+  width: 70%;
+  margin: 5px auto;
+  text-align: center;
+}
+
+.form-container form {
+  width: 100%;
+  margin: 20px 20px;
+  margin: 5px auto;
+  display: inline-block;
+}
+
+.form-container form label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.form-container #newTask {
+  width: 50%;
+  font-size: 16px;
+  padding: 12px 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+.form-container #addButton {
+  background-color: rgb(53, 53, 165);
+  color: #fff;
+  width: 20%;
+  font-size: 16px;
+  padding: 12px 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.table-container {
+  width: 70%;
+  margin: 5px auto;
+  text-align: center;
+}
+
+.table-container #filter {
+  width: 50%;
+  font-size: 16px;
+  padding: 12px 20px;
+  display: inline-block;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+.table-container #taskTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+.table-container #taskTable th {
+  text-align: left;
+  padding: 12px;
+  background-color: rgb(163, 157, 157);
+}
+
+.table-container #taskTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+.table-container #taskTable td:nth-child(1) {
+  width: 70%;
+}
+.table-container #taskTable td:nth-child(2) {
+  width: 30%;
+}
+
+.table-container #taskTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.deleteBtn {
+  width: 30%;
+  background-color: rgb(182, 62, 62);
+  color: #fff;
+  font-size: 16px;
+  padding: 12px 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+}

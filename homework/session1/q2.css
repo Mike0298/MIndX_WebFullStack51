@@ -1,0 +1,66 @@
+.form-container {
+  width: 70%;
+  margin: 5px auto;
+}
+
+.form-container form {
+  width: 100%;
+  margin: 20px 20px;
+  margin: 5px auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.form-container form .form-item label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.form-container form .form-item input {
+  width: 60%;
+  font-size: 16px;
+  padding: 12px 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+.form-container button {
+  background-color: rgb(53, 53, 165);
+  color: #fff;
+  width: 20%;
+  font-size: 16px;
+  padding: 12px 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.table-container {
+  width: 70%;
+  margin: 5px auto;
+  text-align: center;
+}
+
+.table-container #bookTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+.table-container #bookTable th {
+  text-align: left;
+  padding: 12px;
+  background-color: rgb(163, 157, 157);
+}
+
+.table-container #bookTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+.table-container #bookTable tr {
+  border-bottom: 1px solid #ddd;
+}

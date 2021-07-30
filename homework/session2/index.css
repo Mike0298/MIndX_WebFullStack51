@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.container .input-container {
+  width: 40%;
+  margin-top: 20px;
+  display: inline;
+  text-align: center;
+}
+
+.container .input-container #input {
+  width: 60%;
+  font-size: 16px;
+  padding: 12px 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+.container .input-container button {
+  background-color: rgb(53, 53, 165);
+  color: #fff;
+  width: 20%;
+  font-size: 16px;
+  padding: 12px 10px;
+  border: 1px solid #ddd;
+  margin-left: 10px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.container .input-container button:disabled {
+  background-color: rgb(102, 93, 93);
+  cursor: wait;
+}
+
+.container .output-container {
+  width: 40%;
+  margin-top: 20px;
+}
+
+.container .output-container .result {
+  font-size: 30px;
+  width: 100%;
+}
+
+.container .output-container .result-items {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container .output-container .result-items,
+info {
+  width: 100%;
+}
+
+.container .output-container .result-items .info > div > p {
+  font-size: 20px;
+  display: inline;
+}
+
+.container .output-container .result-items .info > div {
+  margin: 10px 0;
+}
+
+.container .output-container .result-items .image img {
+  width: 200px;
+  height: 200px;
+  border: 0px;
+  outline: none;
+}

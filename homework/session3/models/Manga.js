@@ -1,3 +1,10 @@
-const mangas = [];
+const mongoose = require("mongoose");
 
-module.exports = mangas;
+const MangaSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+});
+
+module.exports = Manga = mongoose.model("manga", MangaSchema);

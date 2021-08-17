@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const db = "mongodb://localhost/manga";
+const config = require("./config");
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(db, {
+    await mongoose.connect(config.db, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,

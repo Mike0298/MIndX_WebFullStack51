@@ -9,4 +9,6 @@ router.get("/", (req, res) => {
   return res.status(200).json(Cart);
 });
 
+router.post("/");
+
 module.exports = router;

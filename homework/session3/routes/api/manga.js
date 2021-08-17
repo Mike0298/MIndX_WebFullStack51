@@ -3,6 +3,7 @@ const router = express.Router();
 
 const { validateManga } = require("../../utils/validation");
 const Manga = require("../../models/Manga");
+const auth = require("../../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
@@ -14,7 +15,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const { error } = validateManga(req.body);
   if (error) return res.status(400).send(error.details);
 
@@ -32,7 +33,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:manga_id", async (req, res) => {
+router.put("/:manga_id", auth, async (req, res) => {
   const { error } = validateManga(req.body);
   if (error) return res.status(400).send(error.details);
 
@@ -53,7 +54,7 @@ router.put("/:manga_id", async (req, res) => {
   }
 });
 
-router.delete("/:manga_id", async (req, res) => {
+router.delete("/:manga_id", auth, async (req, res) => {
   try {
     const manga = await Manga.findById(req.params.manga_id);
     if (!manga) return res.status(404).send("Manga does not exist");

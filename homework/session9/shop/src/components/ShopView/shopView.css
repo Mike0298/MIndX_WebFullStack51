@@ -1,0 +1,17 @@
+.itemList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 30px;
+  margin: 20px 0;
+}
+
+.loading {
+  text-align: center;
+  font-size: 15px;
+}

@@ -1,0 +1,46 @@
+.itemCard {
+  width: 30%;
+  min-height: 400px;
+  border: 0.5px solid black;
+  margin: 10px;
+  border-radius: 5px;
+}
+.itemCard .itemImage {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  width: 100%;
+}
+
+.itemCard .itemImage img {
+  width: 300px;
+  height: 300px;
+}
+
+.itemDetail {
+  margin: 0 10px;
+}
+
+.itemDetail > div {
+  margin: 5px 0;
+}
+
+.itemDetail .title {
+  min-height: 40px;
+  text-align: center;
+}
+
+.itemDetail .category {
+  font-size: smaller;
+}
+
+.itemDetail .description {
+  max-height: 20%;
+  overflow-y: scroll;
+  min-height: 90px;
+  max-height: 90px;
+}
+
+.itemDetail .price {
+  text-align: right;
+}

@@ -1,6 +1,6 @@
 const config = {
   db: "",
-  jwtSecret: "",
+  jwtSecret: "MikeShopJWTSecret",
 };
 
 const dataDict = {};

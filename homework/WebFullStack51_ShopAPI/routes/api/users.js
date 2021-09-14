@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 const { config } = require("../../config/config");
 
 const User = require("../../models/User");
-const { findByIdAndUpdate, findByIdAndDelete } = require("../../models/User");
 
 //@route    GET    /api/users/
 //@desc     Get all users
@@ -154,7 +153,7 @@ router.put("/:id", async (req, res) => {
   try {
     let user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ error: "User not found" });
-    user = await findByIdAndUpdate(
+    user = await User.findByIdAndUpdate(
       req.params.id,
       { $set: userField },
       { new: true }

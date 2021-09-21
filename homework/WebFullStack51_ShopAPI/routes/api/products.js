@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const product = Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id);
     if (!product)
       return res.status(404).json({ error: "Product does not exist" });
     return res.status(200).json(product);
@@ -37,7 +37,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //@route    POST    /api/products/
-//@desc     Get product base on id
+//@desc     Add new product
 //@access   Private
 
 router.post("/", async (req, res) => {
@@ -63,6 +63,7 @@ router.post("/", async (req, res) => {
         .status(400)
         .json({ error: "Product with the same name already exist" });
     product = new Product(productFields);
+    await product.save();
     return res.status(200).json(product);
   } catch (err) {
     console.log(err);
@@ -113,7 +114,7 @@ router.delete("/:id", async (req, res) => {
     let product = await Product.findById(req.params.id);
     if (!product)
       return res.status(404).json({ error: "Product does not exist" });
-    await findByIdAndDelete(req.params.id);
+    await Product.findByIdAndDelete(req.params.id);
     product = await Product.find();
     return res.status(200).json(product);
   } catch (err) {

@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { config } = require("../../config/config");
+const auth = require("../../utils/auth.js");
 
 const User = require("../../models/User");
 
@@ -10,7 +11,7 @@ const User = require("../../models/User");
 //@desc     Get all users
 //@access   Private
 
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
   try {
     const users = await User.find();
     if (!users) return res.status(404).json({ error: "There are no user" });
@@ -25,7 +26,7 @@ router.get("/", async (req, res) => {
 //@desc     Get user info base on id
 //@access   Private
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", auth, async (req, res) => {
   try {
     const user = User.findById(req.params.id);
     if (!user) return res.status(404).json({ error: "User not found" });
@@ -143,7 +144,7 @@ router.post("/login", async (req, res) => {
 //@desc     Update user
 //@access   Private
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
   let userField = {};
   if (req.body.street) userField.street = req.body.street;
   if (req.body.city) userField.city = req.body.city;
@@ -169,7 +170,7 @@ router.put("/:id", async (req, res) => {
 //@desc     Delete user
 //@access   Private
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ error: "User not found" });

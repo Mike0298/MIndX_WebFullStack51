@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { config } = require("../../config/config");
+const auth = require("../../utils/auth.js");
 
 const Product = require("../../models/Product");
 
@@ -40,7 +41,7 @@ router.get("/:id", async (req, res) => {
 //@desc     Add new product
 //@access   Private
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   //validation
 
   let productFields = {};
@@ -75,7 +76,7 @@ router.post("/", async (req, res) => {
 //@desc     Update product base on id
 //@access   Private
 
-router.post("/:id", async (req, res) => {
+router.post("/:id", auth, async (req, res) => {
   let productFields = {};
 
   if (req.body.name) productFields.name = req.body.name;
@@ -109,7 +110,7 @@ router.post("/:id", async (req, res) => {
 //@desc     Delete product base on id
 //@access   Private
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   try {
     let product = await Product.findById(req.params.id);
     if (!product)

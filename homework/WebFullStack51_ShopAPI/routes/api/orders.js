@@ -1,11 +1,11 @@
-const express = requrie("express");
+const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const { config } = require("../../config/config");
-const auth = requrie("../../utils/auth.js");
+const auth = require("../../utils/auth.js");
 
 const Order = require("../../models/Order");
-const Product = requrie("../../models/Product");
+const Product = require("../../models/Product");
 const Item = require("../../models/Item");
 const User = require("../../models/User");
 
@@ -13,7 +13,7 @@ const User = require("../../models/User");
 //@desc     Get all orders
 //@access   Private
 
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
   try {
     const orders = await Order.find().sort({ dateCreated: -1 });
     if (orders.length === 0)
@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
 //@desc     Get orders base on id
 //@access   Private
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", auth, async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
     if (!order) return res.status(404).json({ error: "Order does not exist" });

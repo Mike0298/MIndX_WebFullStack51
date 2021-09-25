@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { config } = require("../../config/config");
+const { config, dataDict } = require("../../config/config");
 const auth = require("../../utils/auth.js");
 
 const User = require("../../models/User");
@@ -43,7 +43,7 @@ router.get("/:id", auth, async (req, res) => {
 
 router.get("/get/count", async (req, res) => {
   try {
-    const customers = await User.find({ role: "customer" });
+    const customers = await User.find({ role: dataDict.customer });
     if (!customers) return res.status(200).json({ count: 0 });
     return res.status(200).json({ count: customers.length });
   } catch (err) {

@@ -3,6 +3,14 @@ const config = {
   jwtSecret: "MikeShopJWTSecret",
 };
 
-const dataDict = {};
+const dataDict = {
+  customer: "customer",
+  admin: "admin",
+  manager: "manager",
+  inStock: "in stock",
+  shipped: "shipped",
+  success: "success",
+  cancel: "cancelled",
+};
 
 module.exports = { config, dataDict };

@@ -13,7 +13,7 @@ const User = require("../../models/User");
 
 router.get("/", auth, async (req, res) => {
   try {
-    const currentUser = await User.findById(req.user.id);
+    const currentUser = await User.findById(req.user.id).select("-password");
     if (currentUser.role !== dataDict.admin)
       return res.status(401).json({ error: "Unauthorized" });
     const users = await User.find();
@@ -31,7 +31,7 @@ router.get("/", auth, async (req, res) => {
 
 router.get("/:id", auth, async (req, res) => {
   try {
-    const user = User.findById(req.params.id);
+    const user = User.findById(req.params.id).select("-password");
     if (!user) return res.status(404).json({ error: "User not found" });
     return res.status(200).json(user);
   } catch (err) {

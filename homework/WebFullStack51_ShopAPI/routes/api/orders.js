@@ -67,7 +67,7 @@ router.post("/", auth, async (req, res) => {
       };
       const itemToAdd = new Item(itemFields);
       await itemToAdd.save();
-      orderFields.orderItems.push(itemToAdd.id);
+      orderFields.orderItems.push(itemToAdd);
     }
 
     const order = new Order(orderFields);

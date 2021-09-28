@@ -78,7 +78,7 @@ router.post("/register", async (req, res) => {
   if (req.body.avatar) userField.avatar = req.body.avatar;
 
   try {
-    let user = User.findOne({ email: req.body.email });
+    let user = await User.findOne({ email: req.body.email });
     if (user) return res.status(400).json({ error: "Email already exist" });
     user = new User(userField);
     await user.save();

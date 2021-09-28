@@ -13,6 +13,9 @@ const User = require("../../models/User");
 
 router.get("/", auth, async (req, res) => {
   try {
+    const currentUser = await User.findById(req.user.id);
+    if (currentUser.role !== dataDict.admin)
+      return res.status(401).json({ error: "Unauthorized" });
     const users = await User.find();
     if (!users) return res.status(404).json({ error: "There are no user" });
     return res.status(200).json(users);
@@ -152,6 +155,10 @@ router.put("/:id", auth, async (req, res) => {
   if (req.body.avatar) userField.avatar = req.body.avatar;
 
   try {
+    const currentUser = await User.findById(req.user.id);
+    if (currentUser.id !== req.params.id)
+      return res.status(401).json({ error: "Unauthorized" });
+
     let user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ error: "User not found" });
     user = await User.findByIdAndUpdate(
@@ -172,6 +179,9 @@ router.put("/:id", auth, async (req, res) => {
 
 router.delete("/:id", auth, async (req, res) => {
   try {
+    const currentUser = await User.findById(req.user.id);
+    if (currentUser.id !== req.params.id)
+      return res.status(401).json({ error: "Unauthorized" });
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ error: "User not found" });
     await user.remove();

@@ -156,7 +156,7 @@ router.put("/:id", auth, async (req, res) => {
 
   try {
     const currentUser = await User.findById(req.user.id);
-    if (currentUser.id !== req.params.id)
+    if (currentUser.id.toString() !== req.params.id)
       return res.status(401).json({ error: "Unauthorized" });
 
     let user = await User.findById(req.params.id);
@@ -180,7 +180,7 @@ router.put("/:id", auth, async (req, res) => {
 router.delete("/:id", auth, async (req, res) => {
   try {
     const currentUser = await User.findById(req.user.id);
-    if (currentUser.id !== req.params.id)
+    if (currentUser.id.toString() !== req.params.id)
       return res.status(401).json({ error: "Unauthorized" });
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ error: "User not found" });

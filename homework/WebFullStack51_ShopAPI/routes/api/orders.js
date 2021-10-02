@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const { config } = require("../../config/config");
+const { config, dataDict } = require("../../config/config");
 const auth = require("../../utils/auth.js");
 
 const Order = require("../../models/Order");
@@ -15,7 +15,12 @@ const User = require("../../models/User");
 
 router.get("/", auth, async (req, res) => {
   try {
-    const orders = await Order.find().sort({ dateCreated: -1 });
+    const currentUser = await User.findById(req.user.id);
+    let orders;
+    if (currentUser.role === dataDict.admin)
+      orders = await Order.find().sort({ dateCreated: -1 });
+    else
+      orders = await Order.find({ user: mongoose.Types.ObjectId(req.user.id) });
     if (orders.length === 0)
       return res.status(404).json({ error: "No order exists" });
     return res.status(200).json(orders);

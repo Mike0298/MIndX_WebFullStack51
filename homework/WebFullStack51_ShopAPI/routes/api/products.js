@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { config } = require("../../config/config");
+const { config, dataDict } = require("../../config/config");
 const auth = require("../../utils/auth.js");
 
 const Product = require("../../models/Product");
+const User = require("../../models/User");
 
 //@route    GET    /api/products
 //@desc     Get all products
@@ -44,6 +45,10 @@ router.get("/:id", async (req, res) => {
 router.post("/", auth, async (req, res) => {
   //validation
 
+  const currentUser = await User.findById(req.user.id);
+  if (currentUser.role !== dataDict.admin)
+    return res.status(401).json({ error: "unauthorized" });
+
   let productFields = {};
   productFields.name = req.body.name;
   productFields.description = req.body.description;
@@ -72,11 +77,11 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
-//@route    POST    /api/products/:id
+//@route    PUT    /api/products/:id
 //@desc     Update product base on id
 //@access   Private
 
-router.post("/:id", auth, async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
   let productFields = {};
 
   if (req.body.name) productFields.name = req.body.name;
@@ -91,6 +96,9 @@ router.post("/:id", auth, async (req, res) => {
   if (req.body.rating) productFields.rating = req.body.rating;
 
   try {
+    const currentUser = await User.findById(req.user.id);
+    if (currentUser.role !== dataDict.admin)
+      return res.status(401).json({ error: "unauthorized" });
     let product = await Product.findById(req.params.id);
     if (!product)
       return res.status(404).json({ error: "Product does not exist" });
@@ -112,6 +120,9 @@ router.post("/:id", auth, async (req, res) => {
 
 router.delete("/:id", auth, async (req, res) => {
   try {
+    const currentUser = await User.findById(req.user.id);
+    if (currentUser.role !== dataDict.admin)
+      return res.status(401).json({ error: "unauthorized" });
     let product = await Product.findById(req.params.id);
     if (!product)
       return res.status(404).json({ error: "Product does not exist" });

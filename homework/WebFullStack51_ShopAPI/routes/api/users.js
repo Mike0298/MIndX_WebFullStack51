@@ -13,10 +13,10 @@ const User = require("../../models/User");
 
 router.get("/", auth, async (req, res) => {
   try {
-    const currentUser = await User.findById(req.user.id).select("-password");
+    const currentUser = await User.findById(req.user.id);
     if (currentUser.role !== dataDict.admin)
       return res.status(401).json({ error: "Unauthorized" });
-    const users = await User.find();
+    const users = await User.find().select("-password");
     if (!users) return res.status(404).json({ error: "There are no user" });
     return res.status(200).json(users);
   } catch (err) {
@@ -113,7 +113,7 @@ router.post("/login", async (req, res) => {
   //validation
 
   try {
-    const user = await user.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.body.email });
     if (!user) return res.status(400).json({ error: "Invalidate credentials" });
 
     const isMatched = await bcrypt.compare(req.body.password, user.password);
@@ -155,12 +155,10 @@ router.put("/:id", auth, async (req, res) => {
   if (req.body.avatar) userField.avatar = req.body.avatar;
 
   try {
-    const currentUser = await User.findById(req.user.id);
-    if (currentUser.id.toString() !== req.params.id)
-      return res.status(401).json({ error: "Unauthorized" });
-
     let user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ error: "User not found" });
+    if (user.id.toString() !== req.params.id)
+      return res.status(401).json({ error: "Unauthorized" });
     user = await User.findByIdAndUpdate(
       req.params.id,
       { $set: userField },
@@ -179,11 +177,10 @@ router.put("/:id", auth, async (req, res) => {
 
 router.delete("/:id", auth, async (req, res) => {
   try {
-    const currentUser = await User.findById(req.user.id);
-    if (currentUser.id.toString() !== req.params.id)
-      return res.status(401).json({ error: "Unauthorized" });
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ error: "User not found" });
+    if (user.id.toString() !== req.params.id)
+      return res.status(401).json({ error: "Unauthorized" });
     await user.remove();
     return res.status(200).json({ success: "User removed" });
   } catch (err) {

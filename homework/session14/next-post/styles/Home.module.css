@@ -1,0 +1,29 @@
+.theme {
+  background-color: rgb(56, 50, 50);
+  color: #fff;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image_container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
+
+.image {
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.details {
+  text-align: center;
+  font-size: 17px;
+}
+
+.title {
+  font-size: 30px;
+  margin-bottom: 1rem;
+}

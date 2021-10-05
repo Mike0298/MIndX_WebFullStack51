@@ -1,0 +1,16 @@
+.theme {
+  background-color: rgb(119, 114, 114);
+  height: 60vh;
+  padding-top: 2rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 30px;
+  color: rgb(32, 29, 29);
+}
+
+.items {
+  margin: auto 3rem;
+  display: flex;
+}

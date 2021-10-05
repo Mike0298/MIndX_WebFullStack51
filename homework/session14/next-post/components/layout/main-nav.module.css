@@ -1,0 +1,22 @@
+.theme {
+  height: 4rem;
+  background-color: rgb(56, 50, 50);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+
+.title {
+  width: 60%;
+  font-size: 30px;
+  padding-left: 10%;
+}
+
+.nav {
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  font-size: 20px;
+  padding-right: 25%;
+}

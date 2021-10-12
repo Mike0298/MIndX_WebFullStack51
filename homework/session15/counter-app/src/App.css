@@ -1,0 +1,8 @@
+html {
+  height: 100%;
+  box-sizing: border-box;
+  font-size: 10px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
